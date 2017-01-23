@@ -1,5 +1,5 @@
 let leftOrigin = true,
-    lastX = 0
+    lastX = 0;
 
 function parallax() {
   let depth, i, layer, layers, len, movement, translate3d, topDistance;
@@ -20,40 +20,40 @@ function parallax() {
 
 function slideInCards() {
   let topDistance = this.pageYOffset,
-      windowHeight = $(window).height()
+      windowHeight = $(window).height(),
       bottomDistance = topDistance + windowHeight,
-      cardArray = []
+      cardArray = [];
 
   $('.card:not(.active)').each((i, card) => {
-    let offset = $(card).offset().top + 200
-    if (bottomDistance > offset) cardArray.push((card))
+    let offset = $(card).offset().top + 200;
+    if (bottomDistance > offset) cardArray.push((card));
   })
 
-  if (cardArray.length) leftOrigin = !leftOrigin
+  if (cardArray.length) leftOrigin = !leftOrigin;
 
   $(cardArray).each((i, card) => {
-    if (leftOrigin) $(card).addClass('slideRight')
-    $(card).addClass('active')
-  })
+    if (leftOrigin) $(card).addClass('slideRight');
+    $(card).addClass('active');
+  });
 }
 
 $(window).on('scroll', () => {
-  $('.card').addClass('disabled')
-  parallax()
-  slideInCards()
+  $('.card').addClass('disabled');
+  parallax();
+  slideInCards();
 });
 
 // Prevent hover on scroll
 $('body').on('mousemove', (event) => {
   if (event.screenX !== lastX) {
-    $('.card').removeClass('disabled')
+    $('.card').removeClass('disabled');
   }
-  lastX = event.screenX
-})
+  lastX = event.screenX;
+});
 
 // Activate cards in view
 $(window).ready(() => {
-  slideInCards()
+  slideInCards();
 })
 
 // Slider
@@ -62,10 +62,10 @@ $('#slider').unslider({
   autoplay: true,
   delay: 5000,
   speed: 1000
-})
+});
 
 // Search Bar
 $('#search img').click(function(){
     $(this).parent().toggleClass("active");
-    $(this).siblings('input').focus().val('')
+    $(this).siblings('input').focus().val('');
 });
